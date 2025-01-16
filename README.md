@@ -45,9 +45,9 @@ sudo chmod 755 ./build.sh # Give Execute Permission (for macos and linux only!)
 ### Execution Command
 ```bash
 # 1st time
-executable [path/to/file.cpp] [url] --uid [your_login_uid] --password [your_login_password]
+executable [path/to/file.cpp] --quiz_testcase_link [url] --uid [your_login_uid] --password [your_login_password]
 # 2nd time
-executable [path/to/file.cpp] [url] # no need to type uid and password again
+executable [path/to/file.cpp] --quiz_testcase_link [url] # no need to type uid and password again
 ```
 - password and uid will be cached temporarily in your system cache(temp) folder so you don't have to retype it again
 - if you want to change your uid or password, just use the full command again with the new uid and password
@@ -57,12 +57,12 @@ executable [path/to/file.cpp] [url] # no need to type uid and password again
 ### Python installation Example
 ```bash
 # python installation
-python ntscraper.py ./file.cpp https://2110104.nattee.net/submissions/direct_edit_problem/1307 --uid 66778899 --password 12345678
+python ntscraper.py ./file.cpp --quiz-testcase-link https://2110104.nattee.net/submissions/direct_edit_problem/1307 --uid 66778899 --password 12345678
 ```
 ### Binary installation Example
 ```bash
 # binary installation
-ntscraper ./file.cpp https://2110104.nattee.net/testcases/show_problem/1307 --uid 66778899 --password 12345678
+ntscraper ./file.cpp --quiz_testcase_link https://2110104.nattee.net/testcases/show_problem/1307 --uid 66778899 --password 12345678
 ```
 <details>
 <summary>command not found: ntscraper ?</summary>
@@ -70,6 +70,28 @@ ntscraper ./file.cpp https://2110104.nattee.net/testcases/show_problem/1307 --ui
     after the build move the ntscraper from 'nattee_scraper/dist' to the path that you want to execute the scraper from
 </details>
 <br>
+
+### Folder-based Test Case Import (No login required)
+
+If you have test cases stored locally in a folder (with `.in` files for inputs and `.sol` files for outputs), you can bypass logging into NatteeGrader by using the `--folder` argument.
+
+Each test case file pair should follow the naming convention `x.in` for input and `x.sol` for the expected output, where `x` is a numeric identifier for the test case.
+
+#### Example Usage:
+```bash
+# Use this command to create test cases from a local folder
+python ntscraper.py ./file.cpp --folder ./path_to_test_cases_folder
+```
+
+#### Example Local Test Case Folder Structure:
+```bash
+path_to_test_cases_folder
+├── 1.in
+├── 1.sol
+├── 2.in
+├── 2.sol
+```
+
 # Contribution Needed
 - Testing And Fix (if it broke) build.bat on windows (please also update the docs na bro)
 - Improvements On Codebase Algorithm & Maybe Some Refractor
